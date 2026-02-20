@@ -1,0 +1,1132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <title>Untitled</title>
+    
+
+  </head>
+    
+  <body>
+  <!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>PED6 / PROFED03 / EDUC 111 – Study Notes (Interactive)</title>
+  <style>
+    :root{
+      --bg:#ffffff;
+      --text:#111827;
+      --muted:#6b7280;
+      --line:#e5e7eb;
+      --card:#ffffff;
+      --soft:#f9fafb;
+      --soft2:#f3f4f6;
+      --accent:#2563eb;
+      --accent2:#1d4ed8;
+      --shadow: 0 10px 30px rgba(0,0,0,.08);
+      --shadow2: 0 6px 18px rgba(0,0,0,.06);
+      --radius: 16px;
+      --radius2: 12px;
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      background:var(--bg);
+      color:var(--text);
+      font-family:var(--sans);
+      line-height:1.55;
+    }
+    a{color:var(--accent); text-decoration:none}
+    a:hover{text-decoration:underline}
+    .app{
+      display:grid;
+      grid-template-columns: 320px 1fr;
+      min-height:100vh;
+    }
+    .sidebar{
+      border-right:1px solid var(--line);
+      background:var(--bg);
+      position:sticky;
+      top:0;
+      height:100vh;
+      overflow:auto;
+      padding:18px 14px;
+    }
+    .brand{
+      display:flex;
+      gap:12px;
+      align-items:flex-start;
+      padding:10px 10px 14px;
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      background:linear-gradient(180deg, var(--soft), var(--bg));
+      box-shadow:var(--shadow2);
+      margin-bottom:12px;
+    }
+    .logo{
+      width:40px;height:40px;border-radius:12px;
+      display:grid;place-items:center;
+      background: radial-gradient(circle at 30% 30%, #93c5fd, #2563eb);
+      color:white;font-weight:800;
+      flex:0 0 auto;
+    }
+    .brand h1{
+      font-size:14px;margin:0 0 2px 0;line-height:1.2
+    }
+    .brand p{
+      margin:0;
+      font-size:12px;
+      color:var(--muted);
+    }
+    .toc{
+      margin:12px 0 0;
+      padding:0;
+      list-style:none;
+    }
+    .toc li{
+      margin:6px 0;
+    }
+    .toc a{
+      display:flex;
+      gap:8px;
+      align-items:center;
+      padding:8px 10px;
+      border-radius:12px;
+      border:1px solid transparent;
+      color:var(--text);
+    }
+    .toc a:hover{
+      background:var(--soft);
+      border-color:var(--line);
+      text-decoration:none;
+    }
+    .toc a.active{
+      background:rgba(37,99,235,.08);
+      border-color:rgba(37,99,235,.25);
+      color:var(--accent2);
+      font-weight:700;
+    }
+    .pill{
+      font-size:11px;
+      color:var(--muted);
+      border:1px solid var(--line);
+      padding:2px 8px;
+      border-radius:999px;
+      background:var(--bg);
+      margin-left:auto;
+      white-space:nowrap;
+    }
+
+    .main{
+      padding:18px 18px 40px;
+    }
+    .topbar{
+      position:sticky;
+      top:0;
+      z-index:20;
+      background:rgba(255,255,255,.9);
+      backdrop-filter:saturate(180%) blur(10px);
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow2);
+      padding:10px;
+      display:flex;
+      gap:10px;
+      align-items:center;
+      margin-bottom:14px;
+    }
+    .search{
+      flex:1 1 auto;
+      display:flex;
+      gap:8px;
+      align-items:center;
+      border:1px solid var(--line);
+      background:var(--bg);
+      border-radius:12px;
+      padding:10px 12px;
+    }
+    .search input{
+      border:0;
+      outline:0;
+      width:100%;
+      font-size:14px;
+      background:transparent;
+      color:var(--text);
+    }
+    .btns{display:flex; gap:8px; flex:0 0 auto; flex-wrap:wrap}
+    .btn{
+      border:1px solid var(--line);
+      background:var(--bg);
+      padding:10px 12px;
+      border-radius:12px;
+      cursor:pointer;
+      font-size:13px;
+      color:var(--text);
+      box-shadow: 0 1px 0 rgba(0,0,0,.02);
+      user-select:none;
+      display:flex;
+      gap:8px;
+      align-items:center;
+    }
+    .btn:hover{background:var(--soft)}
+    .btn.primary{
+      border-color:rgba(37,99,235,.35);
+      background:rgba(37,99,235,.08);
+      color:var(--accent2);
+      font-weight:700;
+    }
+    .btn.primary:hover{background:rgba(37,99,235,.12)}
+    .meta{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap:10px;
+      margin-bottom:14px;
+    }
+    .card{
+      border:1px solid var(--line);
+      background:var(--card);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow2);
+      padding:14px;
+    }
+    .card h2{
+      font-size:18px;
+      margin:0 0 6px 0;
+      letter-spacing:-.02em;
+    }
+    .sub{
+      margin:0;
+      color:var(--muted);
+      font-size:13px;
+    }
+    .progressWrap{
+      margin-top:10px;
+      display:flex;
+      gap:10px;
+      align-items:center;
+    }
+    .progress{
+      height:10px;
+      flex:1;
+      background:var(--soft2);
+      border-radius:999px;
+      overflow:hidden;
+      border:1px solid var(--line);
+    }
+    .bar{
+      height:100%;
+      width:0%;
+      background:linear-gradient(90deg, #60a5fa, #2563eb);
+      transition:width .2s ease;
+    }
+    .progressLabel{
+      font-size:12px;color:var(--muted);
+      min-width:92px;text-align:right;
+    }
+
+    details.section{
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      background:var(--bg);
+      box-shadow:var(--shadow2);
+      margin:12px 0;
+      overflow:hidden;
+    }
+    details.section[open]{box-shadow:var(--shadow)}
+    summary{
+      list-style:none;
+      cursor:pointer;
+      padding:14px 14px;
+      display:flex;
+      align-items:flex-start;
+      gap:12px;
+      background:linear-gradient(180deg, var(--soft), var(--bg));
+      border-bottom:1px solid var(--line);
+      user-select:none;
+    }
+    summary::-webkit-details-marker{display:none}
+    .secNum{
+      width:34px;height:34px;border-radius:12px;
+      border:1px solid rgba(37,99,235,.25);
+      background:rgba(37,99,235,.08);
+      display:grid;place-items:center;
+      color:var(--accent2);
+      font-weight:800;
+      flex:0 0 auto;
+      margin-top:1px;
+    }
+    .secTitleWrap{flex:1}
+    .secTitle{
+      margin:0;
+      font-size:16px;
+      letter-spacing:-.01em;
+    }
+    .secHint{
+      margin:3px 0 0 0;
+      font-size:12px;
+      color:var(--muted);
+    }
+    .chev{
+      margin-left:auto;
+      width:28px;height:28px;
+      border-radius:10px;
+      border:1px solid var(--line);
+      display:grid;place-items:center;
+      background:var(--bg);
+      color:var(--muted);
+      flex:0 0 auto;
+    }
+    details[open] summary .chev{transform:rotate(180deg)}
+    .content{
+      padding:14px;
+      display:grid;
+      grid-template-columns: 1fr;
+      gap:12px;
+    }
+    .noteBlock{
+      border:1px solid var(--line);
+      border-radius:var(--radius2);
+      background:var(--bg);
+      padding:12px;
+    }
+    .noteBlock h3{
+      margin:0 0 8px 0;
+      font-size:14px;
+      color:var(--text);
+    }
+    pre.raw{
+      margin:0;
+      white-space:pre-wrap;
+      word-break:break-word;
+      font-family:var(--sans);
+      font-size:14px;
+      line-height:1.6;
+    }
+
+    .vizGrid{
+      display:grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap:12px;
+    }
+    .viz{
+      grid-column: span 12;
+      border:1px solid var(--line);
+      border-radius:var(--radius2);
+      background:linear-gradient(180deg, var(--bg), var(--soft));
+      padding:12px;
+      overflow:hidden;
+    }
+    .viz h3{
+      margin:0 0 10px 0;
+      font-size:13px;
+      color:var(--muted);
+      letter-spacing:.02em;
+      text-transform:uppercase;
+    }
+    .viz svg{width:100%; height:auto; display:block}
+    .chips{
+      display:flex; flex-wrap:wrap; gap:8px;
+      margin-top:10px;
+    }
+    .chip{
+      border:1px solid var(--line);
+      padding:6px 10px;
+      border-radius:999px;
+      font-size:12px;
+      background:var(--bg);
+      color:var(--muted);
+    }
+    mark.hl{
+      background: #fff3b0;
+      padding:0 .15em;
+      border-radius:6px;
+    }
+    .kbd{
+      font-family:var(--mono);
+      font-size:12px;
+      border:1px solid var(--line);
+      background:var(--soft);
+      border-bottom-width:2px;
+      border-radius:8px;
+      padding:2px 6px;
+      color:var(--muted);
+      white-space:nowrap;
+    }
+    .floating{
+      position:fixed;
+      right:18px;
+      bottom:18px;
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+      z-index:50;
+    }
+    .fab{
+      width:46px;height:46px;border-radius:16px;
+      border:1px solid var(--line);
+      background:var(--bg);
+      box-shadow:var(--shadow);
+      cursor:pointer;
+      display:grid;place-items:center;
+      color:var(--accent2);
+    }
+    .fab:hover{background:var(--soft)}
+    .toast{
+      position:fixed;
+      left:50%;
+      transform:translateX(-50%);
+      bottom:18px;
+      background:rgba(17,24,39,.92);
+      color:white;
+      padding:10px 12px;
+      border-radius:14px;
+      font-size:13px;
+      box-shadow:var(--shadow);
+      opacity:0;
+      pointer-events:none;
+      transition:opacity .2s ease;
+      max-width:min(560px, calc(100% - 24px));
+    }
+    .toast.show{opacity:1}
+
+    @media (max-width: 980px){
+      .app{grid-template-columns: 1fr}
+      .sidebar{
+        position:relative;
+        height:auto;
+        border-right:0;
+        border-bottom:1px solid var(--line);
+      }
+      .floating{right:12px; bottom:12px}
+    }
+
+    @media print{
+      .sidebar,.topbar,.floating,.toast{display:none !important}
+      details.section{break-inside:avoid}
+      details.section{box-shadow:none}
+      summary{background:transparent}
+      .main{padding:0}
+      body{color:#000}
+      a{text-decoration:underline}
+    }
+  </style>
+</head>
+<body>
+  <div class="app">
+    <!-- SIDEBAR -->
+    <aside class="sidebar" aria-label="Table of contents">
+      <div class="brand">
+        <div class="logo" aria-hidden="true">P6</div>
+        <div>
+          <h1>PED6 / PROFED03 / EDUC 111</h1>
+          <p>Interactive study notes website • White background • Search + accordions</p>
+          <div class="chips" aria-label="Quick tips">
+            <span class="chip">Tip: Use <span class="kbd">Ctrl</span>+<span class="kbd">F</span> or the search bar</span>
+            <span class="chip">Tip: Expand/collapse all sections</span>
+          </div>
+        </div>
+      </div>
+
+      <ul class="toc" id="toc">
+        <li><a href="#intro" data-target="intro"><span>Overview</span><span class="pill">Start</span></a></li>
+        <li><a href="#sec1" data-target="sec1"><span>1. Fundamental Concepts</span><span class="pill">Core</span></a></li>
+        <li><a href="#sec2" data-target="sec2"><span>2. Developmental Tasks</span><span class="pill">Havighurst</span></a></li>
+        <li><a href="#sec3" data-target="sec3"><span>3. Major Theories</span><span class="pill">Stages</span></a></li>
+        <li><a href="#sec4" data-target="sec4"><span>4. 14 Learner-Centered Principles</span><span class="pill">APA</span></a></li>
+        <li><a href="#sec5" data-target="sec5"><span>5. Learning Theories & Processes</span><span class="pill">Learning</span></a></li>
+        <li><a href="#sec6" data-target="sec6"><span>6. Factors Influencing Dev & Learning</span><span class="pill">Context</span></a></li>
+        <li><a href="#sec7" data-target="sec7"><span>7. Motivation, Management, Instruction & Assessment</span><span class="pill">Practice</span></a></li>
+        <li><a href="#sec8" data-target="sec8"><span>8. Contemporary Issues & PH Context</span><span class="pill">Now</span></a></li>
+        <li><a href="#role" data-target="role"><span>Teacher’s Transformative Role</span><span class="pill">Reflect</span></a></li>
+      </ul>
+    </aside>
+
+    <!-- MAIN -->
+    <main class="main" id="main">
+      <div class="topbar" role="region" aria-label="Controls">
+        <div class="search" role="search">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M10.5 18a7.5 7.5 0 1 1 0-15 7.5 7.5 0 0 1 0 15Z" stroke="currentColor" stroke-width="2"/>
+            <path d="M16 16l5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+          <input id="searchInput" type="search" placeholder="Search within the notes (highlights matches) …" aria-label="Search within the notes" />
+        </div>
+
+        <div class="btns">
+          <button class="btn primary" id="expandAll" type="button" title="Open all sections">Expand all</button>
+          <button class="btn" id="collapseAll" type="button" title="Close all sections">Collapse all</button>
+          <button class="btn" id="clearSearch" type="button" title="Clear search">Clear</button>
+          <button class="btn" id="printBtn" type="button" title="Print (or save as PDF)">Print</button>
+        </div>
+      </div>
+
+      <section class="meta" id="intro">
+        <div class="card">
+          <h2>Study Notes Website (Interactive)</h2>
+          <p class="sub">
+            This page keeps your content intact (verbatim) and wraps it in an interactive study format:
+            collapsible sections, quick navigation, search highlighting, and simple visual aids.
+          </p>
+          <div class="progressWrap" aria-label="Reading progress">
+            <div class="progress" aria-hidden="true"><div class="bar" id="progressBar"></div></div>
+            <div class="progressLabel" id="progressLabel">0% read</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 0 (FULL ORIGINAL TEXT INTRO) -->
+      <details class="section" open id="sec0">
+        <summary>
+          <div class="secNum">0</div>
+          <div class="secTitleWrap">
+            <p class="secTitle">Full Course Header (Verbatim)</p>
+            <p class="secHint">Original course framing and alignment statements</p>
+          </div>
+          <div class="chev" aria-hidden="true">⌄</div>
+        </summary>
+        <div class="content">
+          <div class="noteBlock">
+            <pre class="raw">**PED6 / PROFED03 / EDUC 111: The Child and Adolescent Learners and Learning Principles – Ultra-Comprehensive, In-Depth, Exhaustive Discussion (Philippine BEEd/BSEd Context, Aligned with CHED CMO 30 s. 2017, PPST, DepEd MATATAG, RA 10533 & RA 11650)**
+
+This foundational 3-unit course (54 hours, typically 18 weeks) is mandatory in all Philippine teacher-education programs. It equips pre-service teachers with research-based mastery of biological, linguistic, cognitive, social-emotional, and moral dimensions of development from birth to 18/19 years. It emphasizes **learner-centered** principles, inclusive practices, and direct application to K-12 (especially Grades 1–10 for elementary, 7–12 for secondary).  
+
+The course directly supports **Philippine Professional Standards for Teachers (PPST, DepEd Order 42 s. 2017)**:  
+- Domain 1 (Content Knowledge & Pedagogy)  
+- Domain 2 (Learning Environment)  
+- Domain 3 (Diversity of Learners)  
+- Domain 4 (Curriculum & Planning)  
+- Domain 5 (Assessment & Reporting)  
+
+It prepares teachers for DepEd’s **MATATAG** curriculum, Mother-Tongue-Based Multilingual Education (MTB-MLE), inclusive education, positive discipline (DepEd Order 40 s. 2012), and 21st-century skills. Assessment usually includes quizzes, reaction papers, case studies, lesson plans applying theories, and a final portfolio or developmental case analysis of a real Filipino child/adolescent.
+
+Below is **every aspect** expanded with greater depth, exact theories, full lists, criticisms, Philippine examples, classroom applications, and visual aids.</pre>
+          </div>
+        </div>
+      </details>
+
+      <!-- SECTION 1 -->
+      <details class="section" open id="sec1">
+        <summary>
+          <div class="secNum">1</div>
+          <div class="secTitleWrap">
+            <p class="secTitle">Fundamental Concepts: Growth, Development, Maturation, Learning & Readiness</p>
+            <p class="secHint">Key definitions + principles of human development + approaches to studying development</p>
+          </div>
+          <div class="chev" aria-hidden="true">⌄</div>
+        </summary>
+        <div class="content">
+          <div class="noteBlock">
+            <pre class="raw">### 1. Fundamental Concepts: Growth, Development, Maturation, Learning & Readiness
+**Growth** – Quantitative, measurable changes (e.g., height, weight, brain volume). Follows cephalocaudal (head-to-toe) and proximodistal (center-to-periphery) patterns. Influenced by nutrition, genetics, and environment. Philippine context: Stunting affects ~30% of children under 5 (FNRI data); teachers must monitor and refer for feeding programs.
+
+**Development** – Qualitative, progressive changes in complexity, function, and organization. Multidimensional (physical, cognitive, language, socio-emotional, moral, spiritual) and multidirectional. Continues across the lifespan.
+
+**Maturation** – Genetically timed unfolding (e.g., walking at ~12 months, puberty at 10–14). Provides “readiness” but requires stimulation. Gesell’s maturationist view: Development is largely innate; environment plays minor role (criticized as too deterministic).
+
+**Learning** – Relatively permanent change in behavior, knowledge, or skill from experience, interaction, or instruction. Not the same as maturation (e.g., a 5-year-old can be taught to read only when maturationally ready).
+
+**Key Principles of Human Development** (synthesized from all major sources; 12 most cited):
+1. Development is **orderly and sequential** (predictable stages).
+2. **Cephalocaudal & proximodistal** gradients.
+3. Proceeds at **different rates** (asynchronous – e.g., cognitive spurts in adolescence).
+4. **Continuous yet staged** (quantitative + qualitative shifts).
+5. **Interaction of heredity (nature) and environment (nurture)** – epigenetics: genes can be expressed differently based on experiences.
+6. **Critical/sensitive periods** (e.g., language 0–7 years; attachment 0–3 years).
+7. **Holistic/interrelated** – physical health affects cognition (e.g., iron deficiency → poor attention).
+8. **Plasticity** – brain and behavior can be modified (greatest in early years).
+9. **Individual differences** – influenced by genetics, culture, SES.
+10. **Contextual** (Bronfenbrenner) – development in nested systems.
+11. **Cumulative** – early experiences profoundly shape later outcomes.
+12. **Lifelong** – no decline assumed; growth possible at any age.
+
+**Approaches to Studying Development**:
+- Traditional (focus 0–18; decline after).
+- Lifespan perspective (Baltes): Multidimensional, plastic, contextual, historical.</pre>
+          </div>
+
+          <!-- Visual aids (added, without changing the original text) -->
+          <div class="vizGrid" aria-label="Visual aids for Section 1">
+            <div class="viz">
+              <h3>Visual Aid: Cephalocaudal & Proximodistal Patterns</h3>
+              <svg viewBox="0 0 960 320" role="img" aria-label="Diagram showing head-to-toe and center-to-periphery growth patterns">
+                <!-- Card -->
+                <rect x="16" y="16" width="928" height="288" rx="18" fill="#ffffff" stroke="#e5e7eb"/>
+                <!-- Cephalocaudal -->
+                <text x="48" y="62" font-family="ui-sans-serif, system-ui" font-size="18" fill="#111827" font-weight="700">Cephalocaudal (Head-to-Toe)</text>
+                <line x1="80" y1="88" x2="80" y2="260" stroke="#2563eb" stroke-width="4" stroke-linecap="round"/>
+                <circle cx="80" cy="110" r="10" fill="#2563eb"/>
+                <circle cx="80" cy="160" r="10" fill="#2563eb"/>
+                <circle cx="80" cy="210" r="10" fill="#2563eb"/>
+                <text x="105" y="116" font-family="ui-sans-serif, system-ui" font-size="14" fill="#6b7280">Head / Brain</text>
+                <text x="105" y="166" font-family="ui-sans-serif, system-ui" font-size="14" fill="#6b7280">Trunk</text>
+                <text x="105" y="216" font-family="ui-sans-serif, system-ui" font-size="14" fill="#6b7280">Legs / Feet</text>
+
+                <!-- Proximodistal -->
+                <text x="480" y="62" font-family="ui-sans-serif, system-ui" font-size="18" fill="#111827" font-weight="700">Proximodistal (Center-to-Periphery)</text>
+                <circle cx="520" cy="170" r="56" fill="rgba(37,99,235,.08)" stroke="rgba(37,99,235,.35)" stroke-width="2"/>
+                <circle cx="520" cy="170" r="10" fill="#2563eb"/>
+                <line x1="520" y1="170" x2="700" y2="120" stroke="#2563eb" stroke-width="4" stroke-linecap="round"/>
+                <circle cx="700" cy="120" r="10" fill="#2563eb"/>
+                <line x1="520" y1="170" x2="700" y2="220" stroke="#2563eb" stroke-width="4" stroke-linecap="round"/>
+                <circle cx="700" cy="220" r="10" fill="#2563eb"/>
+                <text x="580" y="160" font-family="ui-sans-serif, system-ui" font-size="14" fill="#6b7280">From core (torso)</text>
+                <text x="720" y="124" font-family="ui-sans-serif, system-ui" font-size="14" fill="#6b7280">Arms/Hands</text>
+                <text x="720" y="224" font-family="ui-sans-serif, system-ui" font-size="14" fill="#6b7280">Legs/Feet</text>
+              </svg>
+            </div>
+
+            <div class="viz">
+              <h3>Visual Aid: Development is Multidimensional & Contextual (Nested Systems)</h3>
+              <svg viewBox="0 0 960 320" role="img" aria-label="Simple nested circles representing ecological systems">
+                <rect x="16" y="16" width="928" height="288" rx="18" fill="#ffffff" stroke="#e5e7eb"/>
+                <!-- Rings -->
+                <circle cx="300" cy="170" r="110" fill="rgba(37,99,235,.06)" stroke="rgba(37,99,235,.22)" stroke-width="2"/>
+                <circle cx="300" cy="170" r="80"  fill="rgba(37,99,235,.08)" stroke="rgba(37,99,235,.28)" stroke-width="2"/>
+                <circle cx="300" cy="170" r="50"  fill="rgba(37,99,235,.10)" stroke="rgba(37,99,235,.34)" stroke-width="2"/>
+                <circle cx="300" cy="170" r="18"  fill="#2563eb"/>
+                <text x="430" y="98" font-family="ui-sans-serif, system-ui" font-size="14" fill="#6b7280">Macrosystem (culture, values)</text>
+                <text x="430" y="140" font-family="ui-sans-serif, system-ui" font-size="14" fill="#6b7280">Exosystem (community influences)</text>
+                <text x="430" y="182" font-family="ui-sans-serif, system-ui" font-size="14" fill="#6b7280">Mesosystem (home–school links)</text>
+                <text x="430" y="224" font-family="ui-sans-serif, system-ui" font-size="14" fill="#6b7280">Microsystem (family, peers, class)</text>
+                <text x="430" y="266" font-family="ui-sans-serif, system-ui" font-size="14" fill="#6b7280">Child/Learner at the center</text>
+              </svg>
+            </div>
+          </div>
+        </div>
+      </details>
+
+      <!-- SECTION 2 -->
+      <details class="section" id="sec2">
+        <summary>
+          <div class="secNum">2</div>
+          <div class="secTitleWrap">
+            <p class="secTitle">Developmental Tasks – Robert Havighurst (Full Detailed List)</p>
+            <p class="secHint">Age-based tasks (0–5, 6–12, 13–18) + Philippine application</p>
+          </div>
+          <div class="chev" aria-hidden="true">⌄</div>
+        </summary>
+        <div class="content">
+          <div class="noteBlock">
+            <pre class="raw">### 2. Developmental Tasks – Robert Havighurst (Full Detailed List)
+Tasks arise at specific ages from biological, psychological, and societal pressures. Successful mastery → happiness & later success; failure → unhappiness & difficulty with next tasks.
+
+
+
+**Infancy & Early Childhood (0–5 years)**  
+- Learning to walk, eat solid foods, talk, control elimination.  
+- Learning sex differences & modesty.  
+- Forming concepts & language to describe reality.  
+- Getting ready to read.  
+- Distinguishing right/wrong & developing conscience.
+
+**Middle Childhood (6–12 years)**  
+- Learning physical skills for ordinary games.  
+- Building wholesome self-attitudes.  
+- Learning to get along with age-mates.  
+- Learning appropriate masculine/feminine social roles.  
+- Developing reading, writing, calculating skills.  
+- Developing concepts for everyday living.  
+- Developing conscience, morality, values.  
+- Achieving personal independence.  
+- Developing attitudes toward social groups/institutions.
+
+**Adolescence (13–18 years)**  
+- Achieving mature relations with both sexes.  
+- Achieving masculine/feminine social role.  
+- Accepting physique & using body effectively.  
+- Achieving emotional independence from parents/adults.  
+- Preparing for marriage & family life.  
+- Preparing for economic career.  
+- Acquiring values & ethical system.  
+- Desiring & achieving socially responsible behavior.
+
+Philippine application: In rural areas, adolescents may take on early economic roles (farming, vending) – teachers must support career guidance aligned with this.</pre>
+          </div>
+        </div>
+      </details>
+
+      <!-- SECTION 3 -->
+      <details class="section" id="sec3">
+        <summary>
+          <div class="secNum">3</div>
+          <div class="secTitleWrap">
+            <p class="secTitle">Major Theories of Development (Expanded with Full Stages, Criticisms, Applications)</p>
+            <p class="secHint">Piaget, Erikson, Vygotsky, Bronfenbrenner, Kohlberg + additional theories</p>
+          </div>
+          <div class="chev" aria-hidden="true">⌄</div>
+        </summary>
+        <div class="content">
+          <div class="noteBlock">
+            <pre class="raw">### 3. Major Theories of Development (Expanded with Full Stages, Criticisms, Applications)
+
+**Jean Piaget – Cognitive Development (Constructivist)**  
+Children actively construct knowledge via assimilation, accommodation, equilibration.
+
+
+
+
+
+**Erik Erikson – Psychosocial Development (8 stages, lifespan focus on first 5–6)**  
+Each stage: crisis → virtue if resolved positively.
+
+
+
+
+
+
+
+**Lev Vygotsky – Socio-Cultural Theory**  
+Social interaction drives development. Key concepts: Zone of Proximal Development (ZPD), More Knowledgeable Other (MKO), scaffolding, private speech, cultural tools (language, symbols). Philippine fit: Bayanihan, group work, elder respect.
+
+**Urie Bronfenbrenner – Bioecological Systems Theory**  
+Development in nested, interacting systems.
+
+
+
+**Lawrence Kohlberg – Moral Development (Cognitive-Moral)**  
+6 stages in 3 levels; based on justice reasoning (Heinz dilemma).
+
+
+
+
+
+**Additional Theories Commonly Covered**  
+- **Freud (Psychosexual)**: Oral, Anal, Phallic, Latency, Genital – early experiences shape personality (criticized: untestable, sexist).  
+- **Bandura (Social Cognitive)**: Observational learning, modeling, self-efficacy, reciprocal determinism.  
+- **Bowlby/Ainsworth (Attachment)**: Secure, Avoidant, Ambivalent, Disorganized – affects all later relationships.  
+- **Gardner (Multiple Intelligences, 1983/1999)**: 8–9 intelligences (linguistic, logical-mathematical, spatial, musical, bodily-kinesthetic, interpersonal, intrapersonal, naturalistic, existential). Teachers must differentiate.
+
+
+
+**Goleman Emotional Intelligence**: Self-awareness, self-management, social awareness, relationship management – crucial for adolescent classroom management.</pre>
+          </div>
+
+          <div class="vizGrid" aria-label="Visual aids for Section 3">
+            <div class="viz">
+              <h3>Visual Aid: ZPD + Scaffolding (Simple Path)</h3>
+              <svg viewBox="0 0 960 320" role="img" aria-label="A simple staircase illustrating scaffolding from current ability to potential development">
+                <rect x="16" y="16" width="928" height="288" rx="18" fill="#ffffff" stroke="#e5e7eb"/>
+                <text x="48" y="60" font-family="ui-sans-serif, system-ui" font-size="18" fill="#111827" font-weight="700">Vygotsky: From “What I can do” → “What I can do with support”</text>
+
+                <!-- steps -->
+                <g>
+                  <rect x="80" y="220" width="120" height="40" rx="10" fill="rgba(37,99,235,.10)" stroke="rgba(37,99,235,.30)"/>
+                  <rect x="210" y="190" width="120" height="70" rx="10" fill="rgba(37,99,235,.10)" stroke="rgba(37,99,235,.30)"/>
+                  <rect x="340" y="160" width="120" height="100" rx="10" fill="rgba(37,99,235,.10)" stroke="rgba(37,99,235,.30)"/>
+                  <rect x="470" y="130" width="120" height="130" rx="10" fill="rgba(37,99,235,.10)" stroke="rgba(37,99,235,.30)"/>
+                  <rect x="600" y="100" width="120" height="160" rx="10" fill="rgba(37,99,235,.10)" stroke="rgba(37,99,235,.30)"/>
+                </g>
+
+                <text x="92" y="246" font-family="ui-sans-serif, system-ui" font-size="13" fill="#6b7280">Current level</text>
+                <text x="230" y="232" font-family="ui-sans-serif, system-ui" font-size="13" fill="#6b7280">Hints</text>
+                <text x="360" y="222" font-family="ui-sans-serif, system-ui" font-size="13" fill="#6b7280">Modeling</text>
+                <text x="490" y="212" font-family="ui-sans-serif, system-ui" font-size="13" fill="#6b7280">Guided practice</text>
+                <text x="622" y="202" font-family="ui-sans-serif, system-ui" font-size="13" fill="#6b7280">Independence</text>
+
+                <!-- arrow -->
+                <path d="M90 118 C 220 70, 480 60, 720 72" fill="none" stroke="#2563eb" stroke-width="4" stroke-linecap="round"/>
+                <path d="M720 72 l-14 -10 M720 72 l-16 8" stroke="#2563eb" stroke-width="4" stroke-linecap="round"/>
+                <text x="350" y="86" font-family="ui-sans-serif, system-ui" font-size="14" fill="#6b7280">ZPD “with support” (scaffolding)</text>
+              </svg>
+            </div>
+          </div>
+        </div>
+      </details>
+
+      <!-- SECTION 4 -->
+      <details class="section" id="sec4">
+        <summary>
+          <div class="secNum">4</div>
+          <div class="secTitleWrap">
+            <p class="secTitle">The 14 Learner-Centered Psychological Principles (APA, 1997) – Core of the Course</p>
+            <p class="secHint">Cognitive/metacognitive, motivational/affective, developmental/social, individual differences</p>
+          </div>
+          <div class="chev" aria-hidden="true">⌄</div>
+        </summary>
+        <div class="content">
+          <div class="noteBlock">
+            <pre class="raw">### 4. The 14 Learner-Centered Psychological Principles (APA, 1997) – Core of the Course (Full Detailed List)
+
+
+
+
+
+
+
+**Cognitive & Metacognitive Factors (6)**  
+1. **Nature of the learning process**: Learning complex material is intentional construction of meaning from information/experience.  
+2. **Goals of the learning process**: Successful learners create coherent representations; they are goal-directed.  
+3. **Construction of knowledge**: Learners link new info to existing knowledge.  
+4. **Strategic thinking & reasoning**: Learners use strategies for thinking/reasoning.  
+5. **Thinking about thinking (metacognition)**: Learners monitor/regulate their own cognition.  
+6. **Context of learning**: Learning influenced by environmental factors (culture, technology, instruction).
+
+**Motivational & Affective Factors (3)**  
+7. **Motivational & emotional influences**: Thoughts, beliefs, emotions enhance or interfere with learning.  
+8. **Intrinsic motivation**: Novelty, relevance, choice, control promote intrinsic motivation.  
+9. **Effects of motivation on effort**: Learners invest effort when motivated for challenging tasks.
+
+**Developmental & Social Factors (2)**  
+10. **Developmental influences**: Learning is most effective when aligned with developmental level.  
+11. **Social influences**: Social interactions shape learning (cooperative, competitive, collaborative).
+
+**Individual Differences Factors (3)**  
+12. **Individual differences**: Learners differ in strategies, approaches, capabilities, preferences.  
+13. **Learning & diversity**: Learning influenced by linguistic, cultural, gender differences.  
+14. **Standards & assessment**: Assessment must reflect learning goals and provide feedback for progress.
+
+**Classroom Applications (Philippine examples)**: Use group work (bayanihan), reflection journals (metacognition), choice boards for MI, culturally relevant examples (Filipino heroes, local problems).</pre>
+          </div>
+        </div>
+      </details>
+
+      <!-- SECTION 5 -->
+      <details class="section" id="sec5">
+        <summary>
+          <div class="secNum">5</div>
+          <div class="secTitleWrap">
+            <p class="secTitle">Learning Theories & Processes (Expanded)</p>
+            <p class="secHint">Behavioral, cognitive, constructivist, humanistic, social learning, connectivism</p>
+          </div>
+          <div class="chev" aria-hidden="true">⌄</div>
+        </summary>
+        <div class="content">
+          <div class="noteBlock">
+            <pre class="raw">### 5. Learning Theories & Processes (Expanded)
+- **Behavioral**: Thorndike (law of effect), Pavlov (classical), Skinner (operant – positive/negative reinforcement, punishment, extinction). Applications: Token economy, praise.  
+- **Cognitive/Information Processing**: Attention → Sensory → Short-term/working → Long-term memory (rehearsal, encoding, retrieval). Metacognition.  
+- **Constructivist**: Piaget + Vygotsky extensions; discovery learning, scaffolding, authentic tasks.  
+- **Humanistic (Rogers)**: Learner-centered, unconditional positive regard, freedom to learn.  
+- **Social Learning (Bandura)**: Modeling, vicarious reinforcement.  
+- **Connectivism (Siemens)**: Learning in digital networks (relevant for Gen Z/Alpha in PH).</pre>
+          </div>
+
+          <div class="vizGrid" aria-label="Visual aids for Section 5">
+            <div class="viz">
+              <h3>Visual Aid: Information Processing Flow (Attention → Memory)</h3>
+              <svg viewBox="0 0 960 320" role="img" aria-label="Flowchart of information processing: sensory to working to long-term memory">
+                <rect x="16" y="16" width="928" height="288" rx="18" fill="#ffffff" stroke="#e5e7eb"/>
+                <text x="48" y="60" font-family="ui-sans-serif, system-ui" font-size="18" fill="#111827" font-weight="700">Cognitive / Information Processing</text>
+
+                <!-- boxes -->
+                <g font-family="ui-sans-serif, system-ui" font-size="14" fill="#111827">
+                  <rect x="70" y="120" width="160" height="64" rx="14" fill="rgba(37,99,235,.08)" stroke="rgba(37,99,235,.28)"/>
+                  <text x="90" y="158">Attention</text>
+
+                  <rect x="260" y="120" width="190" height="64" rx="14" fill="rgba(37,99,235,.08)" stroke="rgba(37,99,235,.28)"/>
+                  <text x="280" y="148">Sensory Memory</text>
+                  <text x="280" y="168" fill="#6b7280">(very brief)</text>
+
+                  <rect x="480" y="120" width="220" height="64" rx="14" fill="rgba(37,99,235,.08)" stroke="rgba(37,99,235,.28)"/>
+                  <text x="500" y="148">Working Memory</text>
+                  <text x="500" y="168" fill="#6b7280">(short-term)</text>
+
+                  <rect x="730" y="120" width="160" height="64" rx="14" fill="rgba(37,99,235,.08)" stroke="rgba(37,99,235,.28)"/>
+                  <text x="748" y="148">Long-term</text>
+                  <text x="748" y="168">Memory</text>
+                </g>
+
+                <!-- arrows -->
+                <g stroke="#2563eb" stroke-width="4" stroke-linecap="round">
+                  <path d="M230 152 L260 152"/>
+                  <path d="M450 152 L480 152"/>
+                  <path d="M700 152 L730 152"/>
+                </g>
+
+                <text x="486" y="220" font-family="ui-sans-serif, system-ui" font-size="14" fill="#6b7280">Rehearsal • Encoding • Retrieval • Metacognition</text>
+              </svg>
+            </div>
+          </div>
+        </div>
+      </details>
+
+      <!-- SECTION 6 -->
+      <details class="section" id="sec6">
+        <summary>
+          <div class="secNum">6</div>
+          <div class="secTitleWrap">
+            <p class="secTitle">Factors Influencing Development & Learning</p>
+            <p class="secHint">Biological, environmental/socio-cultural, exceptionalities + UDL</p>
+          </div>
+          <div class="chev" aria-hidden="true">⌄</div>
+        </summary>
+        <div class="content">
+          <div class="noteBlock">
+            <pre class="raw">### 6. Factors Influencing Development & Learning
+**Biological**: Genetics, nutrition, health, brain development (synaptogenesis 0–3, pruning, adolescent prefrontal lag → risk-taking, emotion over logic).  
+**Environmental/Socio-cultural**: Family (extended in PH), SES (poverty affects 1 in 4 Filipino children), peers, school, media, culture (collectivism, religiosity). OFW parents, typhoons/disasters (resilience needed). Multilingualism (positive for cognition).  
+**Exceptionalities**: Gifted, disabilities (IDEA categories adapted in PH SPED), ADHD, autism – teachers must apply Universal Design for Learning (UDL).</pre>
+          </div>
+        </div>
+      </details>
+
+      <!-- SECTION 7 -->
+      <details class="section" id="sec7">
+        <summary>
+          <div class="secNum">7</div>
+          <div class="secTitleWrap">
+            <p class="secTitle">Motivation, Classroom Management, Instruction & Assessment</p>
+            <p class="secHint">Self-Determination, ARCS, Expectancy-Value + preventive/supportive/corrective + assessment types</p>
+          </div>
+          <div class="chev" aria-hidden="true">⌄</div>
+        </summary>
+        <div class="content">
+          <div class="noteBlock">
+            <pre class="raw">### 7. Motivation, Classroom Management, Instruction & Assessment
+**Motivation Theories**: Self-Determination (autonomy, competence, relatedness), ARCS (Attention, Relevance, Confidence, Satisfaction), Expectancy-Value. Strategies: Real-life problems (e.g., climate change in PH), growth mindset praise.  
+**Management**: Preventive (clear rules, routines), supportive (positive relationships), corrective (restorative justice over punishment).  
+**Instruction**: Differentiated (Tomlinson), project-based, inquiry, technology integration.  
+**Assessment**: Formative (daily checks), summative, authentic (portfolios, performances), rubrics. Avoid bias against indigenous/minority learners.</pre>
+          </div>
+        </div>
+      </details>
+
+      <!-- SECTION 8 -->
+      <details class="section" id="sec8">
+        <summary>
+          <div class="secNum">8</div>
+          <div class="secTitleWrap">
+            <p class="secTitle">Contemporary Issues & Philippine Context</p>
+            <p class="secHint">Mental health, digital divide, SOGIE, IPED, learning loss, resilience</p>
+          </div>
+          <div class="chev" aria-hidden="true">⌄</div>
+        </summary>
+        <div class="content">
+          <div class="noteBlock">
+            <pre class="raw">### 8. Contemporary Issues & Philippine Context
+- Adolescent mental health crisis (suicide rates rising).  
+- Digital natives vs. digital divide (DepEd’s blended learning).  
+- Gender sensitivity & SOGIE.  
+- Indigenous Peoples Education (IPED).  
+- Post-pandemic learning loss & socio-emotional recovery.  
+- Teacher as “second parent” – building resilience.</pre>
+          </div>
+        </div>
+      </details>
+
+      <!-- TEACHER ROLE -->
+      <details class="section" open id="role">
+        <summary>
+          <div class="secNum">★</div>
+          <div class="secTitleWrap">
+            <p class="secTitle">Teacher’s Transformative Role</p>
+            <p class="secHint">Your reflective prompts (verbatim)</p>
+          </div>
+          <div class="chev" aria-hidden="true">⌄</div>
+        </summary>
+        <div class="content">
+          <div class="noteBlock">
+            <pre class="raw">### Teacher’s Transformative Role
+You are not just a content deliverer but a **developmental facilitator, scaffold, and advocate**. Reflect: “How does knowing Erikson’s Industry vs. Inferiority help me praise effort in Grade 4?” or “How does ZPD guide my MTB-MLE lessons?”</pre>
+          </div>
+        </div>
+      </details>
+
+      <div class="card" style="margin-top:14px">
+        <h2>Done</h2>
+        <p class="sub">
+          You can now study by expanding sections, using the sidebar, and searching keywords. Printing hides the UI so it looks clean for handouts.
+        </p>
+      </div>
+    </main>
+  </div>
+
+  <!-- FLOATING ACTIONS -->
+  <div class="floating" aria-label="Quick actions">
+    <button class="fab" id="toTop" type="button" title="Back to top" aria-label="Back to top">↑</button>
+    <button class="fab" id="copyLink" type="button" title="Copy page link" aria-label="Copy page link">⎘</button>
+  </div>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script>
+    // ===== Helpers =====
+    const $ = (sel, root=document) => root.querySelector(sel);
+    const $$ = (sel, root=document) => Array.from(root.querySelectorAll(sel));
+
+    const toastEl = $("#toast");
+    let toastTimer = null;
+    function toast(msg){
+      toastEl.textContent = msg;
+      toastEl.classList.add("show");
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(()=>toastEl.classList.remove("show"), 1400);
+    }
+
+    // ===== Expand/Collapse =====
+    const sectionDetails = $$("details.section");
+    $("#expandAll").addEventListener("click", ()=>{
+      sectionDetails.forEach(d => d.open = true);
+      toast("Expanded all sections");
+    });
+    $("#collapseAll").addEventListener("click", ()=>{
+      sectionDetails.forEach(d => d.open = false);
+      toast("Collapsed all sections");
+    });
+
+    // ===== Print =====
+    $("#printBtn").addEventListener("click", ()=> window.print());
+
+    // ===== Back to top =====
+    $("#toTop").addEventListener("click", ()=>{
+      window.scrollTo({top:0, behavior:"smooth"});
+    });
+
+    // ===== Copy link =====
+    $("#copyLink").addEventListener("click", async ()=>{
+      try{
+        await navigator.clipboard.writeText(location.href);
+        toast("Link copied");
+      }catch(e){
+        toast("Copy failed (browser blocked)");
+      }
+    });
+
+    // ===== Reading progress =====
+    const progressBar = $("#progressBar");
+    const progressLabel = $("#progressLabel");
+    function updateProgress(){
+      const doc = document.documentElement;
+      const scrollTop = doc.scrollTop || document.body.scrollTop;
+      const scrollHeight = doc.scrollHeight - doc.clientHeight;
+      const p = scrollHeight > 0 ? Math.min(100, Math.max(0, (scrollTop / scrollHeight) * 100)) : 0;
+      progressBar.style.width = p.toFixed(1) + "%";
+      progressLabel.textContent = Math.round(p) + "% read";
+    }
+    document.addEventListener("scroll", updateProgress, {passive:true});
+    updateProgress();
+
+    // ===== TOC active link highlighting =====
+    const tocLinks = $$("#toc a");
+    const targets = tocLinks
+      .map(a => document.getElementById(a.dataset.target))
+      .filter(Boolean);
+
+    const observer = new IntersectionObserver((entries)=>{
+      entries.forEach(entry=>{
+        if(entry.isIntersecting){
+          const id = entry.target.id;
+          tocLinks.forEach(a => a.classList.toggle("active", a.dataset.target === id));
+        }
+      });
+    }, {root:null, threshold:0.2});
+
+    targets.forEach(t => observer.observe(t));
+
+    // Smooth scroll
+    tocLinks.forEach(a=>{
+      a.addEventListener("click", (e)=>{
+        e.preventDefault();
+        const t = document.getElementById(a.dataset.target);
+        if(!t) return;
+        t.scrollIntoView({behavior:"smooth", block:"start"});
+        history.replaceState(null, "", "#" + a.dataset.target);
+      });
+    });
+
+    // ===== Search highlighting (non-destructive) =====
+    // We only highlight inside <pre.raw> blocks to keep your text verbatim.
+    const searchInput = $("#searchInput");
+    const clearBtn = $("#clearSearch");
+    const pres = $$("pre.raw");
+
+    // store original text so we can restore exactly
+    const original = new Map();
+    pres.forEach(pre => original.set(pre, pre.textContent));
+
+    function escapeRegExp(str){
+      return str.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+    }
+
+    function clearHighlights(){
+      pres.forEach(pre => {
+        pre.textContent = original.get(pre);
+      });
+    }
+
+    function highlight(term){
+      clearHighlights();
+      const t = term.trim();
+      if(!t) return;
+
+      const re = new RegExp(escapeRegExp(t), "gi");
+      let firstMatchEl = null;
+
+      pres.forEach(pre=>{
+        const text = original.get(pre);
+        if(!re.test(text)) return;
+
+        // reset regex state after test (because /g)
+        re.lastIndex = 0;
+
+        // Build a fragment with <mark>
+        const parts = [];
+        let last = 0;
+        let m;
+        while((m = re.exec(text)) !== null){
+          const start = m.index;
+          const end = start + m[0].length;
+          parts.push(document.createTextNode(text.slice(last, start)));
+          const mark = document.createElement("mark");
+          mark.className = "hl";
+          mark.textContent = text.slice(start, end);
+          parts.push(mark);
+          last = end;
+
+          if(!firstMatchEl) firstMatchEl = mark;
+          // avoid infinite loops on zero-length matches (shouldn't happen)
+          if(m.index === re.lastIndex) re.lastIndex++;
+        }
+        parts.push(document.createTextNode(text.slice(last)));
+
+        pre.textContent = ""; // clear
+        parts.forEach(node => pre.appendChild(node));
+      });
+
+      if(firstMatchEl){
+        // open the parent details section if closed
+        const det = firstMatchEl.closest("details.section");
+        if(det) det.open = true;
+        firstMatchEl.scrollIntoView({behavior:"smooth", block:"center"});
+        toast("Highlighted matches");
+      }else{
+        toast("No matches found");
+      }
+    }
+
+    searchInput.addEventListener("input", ()=>{
+      highlight(searchInput.value);
+    });
+
+    clearBtn.addEventListener("click", ()=>{
+      searchInput.value = "";
+      clearHighlights();
+      toast("Search cleared");
+    });
+
+    // ===== Restore highlights on hash navigation (optional quality) =====
+    // If user navigates with #secX, open it.
+    function openFromHash(){
+      const id = location.hash.replace("#", "");
+      if(!id) return;
+      const el = document.getElementById(id);
+      if(!el) return;
+      const det = el.closest("details.section");
+      if(det) det.open = true;
+      el.scrollIntoView({behavior:"smooth", block:"start"});
+    }
+    window.addEventListener("hashchange", openFromHash);
+    // initial
+    setTimeout(openFromHash, 0);
+  </script>
+</body>
+</html>
+    
+  </body>
+  
+</html>
